@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-import re # Usamos Regex para una limpieza determinista profesional
+import re
 from datetime import datetime
 import tkinter as tk
 from tkinter import filedialog
@@ -16,16 +16,12 @@ def seleccionar_archivo():
     return ruta_archivo
 
 def identificador_palabras(texto):
-    # Enfoque de Ingeniería: Usamos Regex para definir qué es una palabra.
-    # Esto elimina puntuación y caracteres especiales de golpe sin ciclos lentos.
-    # \w busca caracteres alfanuméricos, incluyendo tildes.
     return re.findall(r"[\w'-]+", texto.lower())
 
 def contador_manual_eficiente(lista_palabras):
-    # Usamos un diccionario para contar en O(N) - Nivel Profesional
     conteo = {}
     for palabra in lista_palabras:
-        # Limpiamos guiones o comillas en los extremos (como en tu código original)
+        # Limpiamos guiones o comillas en los extremos
         palabra_limpia = palabra.strip("-'")
         if not palabra_limpia:
             continue
@@ -34,8 +30,6 @@ def contador_manual_eficiente(lista_palabras):
             conteo[palabra_limpia] += 1
         else:
             conteo[palabra_limpia] = 1
-    
-    # Convertimos el diccionario a la estructura que necesita tu DataFrame
     return {"palabra": list(conteo.keys()), "frecuencia": list(conteo.values())}
 
 # --- Flujo Principal ---
