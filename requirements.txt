@@ -1,0 +1,3 @@
+spacy
+pandas
+es_core_news_sm
